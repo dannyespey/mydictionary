@@ -11,7 +11,9 @@ def main():
 
 
     # Deal the cards.
-    deal_cards(deck,num_cards)
+    handValue=deal_cards(deck,num_cards)
+
+    hit_stand(handValue,deck)
 
     
     
@@ -83,6 +85,28 @@ def deal_cards(deck, number):
 
     print(f'The hand value is {handValue}')
     
+    return handValue
+
+def hit_stand(handValue,deck):
+    hit_or_stand = input('Would you like to hit or stand?')
+
+    while hit_or_stand == 'hit':
+        card = random.choice(list(deck))
+        value=deck[card]
+        handValue+=value
+        print(card)
+        print(handValue)
+        if handValue == 21:
+            print('dub')
+            hit_or_stand = 'stand'
+        if handValue > 21:
+            print('you bust')
+            hit_or_stand = 'stand'
+        if handValue<21:
+            hit_or_stand = input('Would you like to hit or stand?')
+    
+    
+
 
 # Call the main function.
 main()
